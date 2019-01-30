@@ -1,0 +1,14 @@
+{
+    "name": "dima/yeticave",
+    "description": "this is my php-project",
+    "authors": [
+        {
+            "name": "Dmitry",
+            "email": "dimabatarev@mail.ru"
+        }
+    ],
+    "require": {
+        "phpoffice/phpexcel": "^1.8",
+        "swiftmailer/swiftmailer": "^6.1"
+    }
+}

@@ -1,5 +1,6 @@
 <?php
     $categories = $template_data['categories_db'];
+    $total = $template_data['total'];
 ?>
 <section class="promo">
             <h2 class="promo__title">Нужен стафф для катки?</h2>
@@ -8,7 +9,7 @@
             <ul class="promo__list">
                 <?php foreach ($categories as $cat): ?>
                     <li class="promo__item promo__item--<?=$cat['cat_img'];?>">
-                        <a class="promo__link" href="all-lots.html"><?=$cat['cat_name'];?></a>
+                        <a class="promo__link" href="all-lot.php?category=<?=$cat['cat_name'];?>"><?=$cat['cat_name'];?></a>
                     </li> 
                  <?php endforeach; ?>
             </ul>
@@ -37,12 +38,22 @@
 
                         </div>
                         <div class="lot__timer timer">
-                            <?php print(setTime($value['data_create'], $value['data_stop'])); ?>
+                            <?php print(setTime1(date('Y-m-d H:i:s'), $value['data_stop'])); ?>
                         </div>
                     </div>
                 </div>     
             </li>
             <?php endforeach; ?>
+        </ul>
+        <ul class="pagination-list">
+              <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
+              <?php
+                for ($i = 1; $i <= $total; $i++){ ?>
+                    <?php 
+                    ($_GET['page'] == $i) ? $active = 'pagination-item-active' : $active = ''; ?>
+                    <li class="pagination-item <?= $active; ?>"><a href="index.php?page=<?=$i;?>"><?= $i; ?></a></li>
+                <?php } ?>
+              <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
         </ul>
 </section>
     

@@ -853,7 +853,7 @@ input:invalid .form__error{
 }
 
 .form__item--invalid textarea,
-.form__item--invalid input {
+.form__item--invalid :not(.form__item--invalid--bet) input {
   background: #ffffff url("../img/error.svg") 97% 11px no-repeat;
   border-color: #f84646;
 }
@@ -870,6 +870,7 @@ input:invalid .form__error{
 .form__item--wide.form__item--invalid textarea {
   background: #ffffff url("../img/error.svg") 702px 11px no-repeat;
 }
+
 
 .form__item--file label span {
   display: block;
@@ -1015,7 +1016,7 @@ input:invalid .form__error{
   display: block;
   margin-top: -5px;
   font-family: "Open Sans", sans-serif;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 31px;
   font-weight: 700;
 }

@@ -32,7 +32,7 @@ CREATE INDEX lot_name on lot(name);
 
 CREATE TABLE bet (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	data_bet DATE not null,
+	data_bet DATETIME not null,
 	price INT not null,
   user_id INT,
   lot_id INT
@@ -40,7 +40,7 @@ CREATE TABLE bet (
 
 CREATE TABLE users (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	data_reg DATE,
+	data_reg DATETIME,
 	email CHAR(80) not null,
 	name CHAR(50) not null,
 	password CHAR(100),
@@ -49,5 +49,8 @@ CREATE TABLE users (
 );
 	
 CREATE UNIQUE INDEX email on users(email);
+
+
+CREATE FULLTEXT INDEX name_descr ON lot (name, description);
 
 

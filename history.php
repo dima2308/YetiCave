@@ -1,7 +1,5 @@
 <?php
 	require_once 'functions.php';
-	require_once 'my_lots.php';
-    require_once "variables.php";
     
     if (isset($_COOKIE['history'])) {
         $history_lots = json_decode($_COOKIE['history']);
@@ -34,10 +32,9 @@
     $layout_content = renderTemplate('templates/layout.php', [
         'content' => $history_content,
         'title' => $lot_name,
-        'auth' => $is_auth, 
         'username' => $user_name,
         'avatar' => $user_avatar,
-        'categories' => $categories]);
+        'categories' => selectCategories($connect)]);
         
     print($layout_content);
 ?>

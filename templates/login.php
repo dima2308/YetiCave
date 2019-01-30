@@ -1,26 +1,4 @@
-<nav class="nav">
-    <ul class="nav__list container">
-      <li class="nav__item">
-        <a href="all-lots.html">Доски и лыжи</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Крепления</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Ботинки</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Одежда</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Инструменты</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Разное</a>
-      </li>
-    </ul>
-  </nav>
-  
+
   <?php        
         $info_login = $template_data['info_login'];
         $errors = $template_data['errors'];   
@@ -38,7 +16,7 @@
       ?>
     <div class="form__item <?= $classname; ?>"> <!-- form__item--invalid -->
       <label for="email">E-mail*</label>
-      <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?= $value; ?>">
+      <input id="email" type="email" name="email" placeholder="Введите e-mail" value="<?= $value; ?>">
       <span class="form__error"><?= $error;?></span>
     </div>
     

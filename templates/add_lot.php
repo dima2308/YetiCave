@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Все лоты</title>
-  <link href="css/normalize.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-</head>
-<body>
-  <nav class="nav">
-    <ul class="nav__list container">
-      <li class="nav__item">
-        <a href="all-lots.html">Доски и лыжи</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Крепления</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Ботинки</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Одежда</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Инструменты</a>
-      </li>
-      <li class="nav__item">
-        <a href="all-lots.html">Разное</a>
-      </li>
-    </ul>
-  </nav>
-  
+
   <?php        
         $lot = $template_data['info_lot'];
         $errors = $template_data['errors'];
@@ -61,7 +30,7 @@
           <option>Выберите категорию</option>
             <?php 
                 foreach ($template_data['categories'] as $cat): ?>      
-                <option value="<?=$cat;?>"<?php if($cat == $value): echo ' selected'; endif;?>><?=$cat?></option>
+                <option value="<?=$cat['cat_name'];?>"<?php if($cat['cat_name'] == $value): echo ' selected'; endif;?>><?=$cat['cat_name']?></option>
             <?php endforeach; ?>
             
         </select>

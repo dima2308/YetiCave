@@ -1,20 +1,12 @@
 <?php
 	require_once 'functions.php';
-	require_once 'my_lots.php';
-    require_once "variables.php";
+    require_once "vendor/autoload.php";
     
     $connect = mysqli_connect("localhost", "root", "", "yeticave");
     
     if ($connect == false) {
         print("Ошибка подключения: " . mysqli_connect_error());
-    } /*
-    else {
-        print("Соединение установлено");
-    } */
-    
-    //$record = "INSERT INTO users SET email = $reg['email'], password = password_hash($reg['password'], PASSWORD_DEFAULT), name = $reg['name'], contact = $reg['contacts']";
-    
-    
+    }
     
    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $required_fields = ['email', 'password', 'name', 'contacts'];
@@ -26,6 +18,13 @@
                 $errors[$field] = 'Заполните поле';
             }
         }
+        
+        if (isset($_FILES['filename']['name'])) {  
+            $real_name = $_FILES['filename']['name'];
+            $tmp_name = $_FILES['filename']['tmp_name'];
+            
+            move_uploaded_file($tmp_name, 'img/avatars/' . $real_name);  
+        }
 
         if (count($errors)) {
             $reg_content = renderTemplate('templates/registration.php', [
@@ -33,13 +32,15 @@
                 'errors' => $errors,
                 'categories' => $categories]); 
         }
-        else {
+        
+      else {
             $email = $reg['email'];
             $password = password_hash($reg['password'], PASSWORD_DEFAULT);
             $name = $reg['name'];
             $contact = $reg['contacts'];
+            $url = $_FILES['filename']['name'];
             
-            $record = "INSERT INTO `users` (`data_reg`, `email`, `password`, `name`, `contact`, `url`) VALUES ('2017-01-20', '$email', '$password', '$name', '$contact', '1')";
+            $record = "INSERT INTO `users` (`data_reg`, `email`, `password`, `name`, `contact`, `url`) VALUES ('2017-01-20', '$email', '$password', '$name', '$contact', 'img/avatars/$url')";
             $result = mysqli_query($connect, $record);
                
             if (!$result) {
@@ -54,14 +55,12 @@
    else {
         $reg_content = renderTemplate('templates/registration.php', []); 
    }
-   
-     
+  
     $layout_content = renderTemplate('templates/layout.php', [
         'content' => $reg_content,
         'title' => "Регистрация",
-        'auth' => $is_auth, 
         'username' => $user_name,
         'avatar' => $user_avatar,
-        'categories' => $categories]);
+        'categories' => selectCategories($connect)]);
         
     print($layout_content);

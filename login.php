@@ -1,8 +1,7 @@
 <?php
 	require_once 'functions.php';
-	require_once 'my_lots.php';
-    require_once 'variables.php';
     require_once 'userdata.php';
+    require_once "vendor/autoload.php";
     
     session_start();
     
@@ -36,9 +35,27 @@
                 if (password_verify($info_login['password'], $user['password'])) {
                     $_SESSION['user'] = $user;
                     
+                    /*
                     $newname = mysqli_query($connect, "SELECT `name` FROM `users` WHERE `email` = '$email'");
                     $userna = mysqli_fetch_array($newname, MYSQLI_ASSOC);
                     $user_name_ses = $userna['name'];
+                    
+                    $newimg = mysqli_query($connect, "SELECT `url` FROM `users` WHERE `email` = '$email'");
+                    $userimg = mysqli_fetch_array($newimg, MYSQLI_ASSOC);
+                    $user_img_ses = $userimg['url'];
+                    
+                    $newid = mysqli_query($connect, "SELECT `id` FROM `users` WHERE `email` = '$email'");
+                    $userid = mysqli_fetch_array($newid, MYSQLI_ASSOC);
+                    $user_id_ses = $userid['id'];
+                    */
+                    
+                    $sql_new_us = mysqli_query($connect, "SELECT `name`, `url`, `id` FROM `users` WHERE `email` = '$email'");
+                    $sql_new_fetch = mysqli_fetch_array($sql_new_us, MYSQLI_ASSOC);
+                    
+                    $user_name_ses = $sql_new_fetch['name'];
+                    $user_img_ses = $sql_new_fetch['url'];
+                    $user_id_ses = $sql_new_fetch['id'];
+                    
                 }
                 else {
                     $errors['password'] = 'Неверный пароль';
@@ -48,6 +65,8 @@
         }
        
        $_SESSION['user_name'] = $user_name_ses;
+       $_SESSION['user_img'] = $user_img_ses;
+       $_SESSION['user_id'] = $user_id_ses;
        
 
         if (count($errors)) {
@@ -65,15 +84,13 @@
     else {
         $login_content = renderTemplate('templates/login.php', []);
     }
-
-      
+   
     $layout_content = renderTemplate('templates/layout.php', [
         'content' => $login_content,
         'title' => $lot_name,
-        'auth' => $is_auth, 
         'username' => $user_name,
         'avatar' => $user_avatar,
-        'categories' => $categories]);
+        'categories' => selectCategories($connect)]);
         
     print($layout_content);
 

@@ -70,5 +70,5 @@
       <p>* - обязательные поля</p>
     </div>
     
-    <button type="submit" class="button">Войти</button>
+    <button type="submit" class="button">Зарегистрироваться</button>
   </form>

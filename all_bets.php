@@ -11,19 +11,27 @@
         print("Ошибка подключения: " . mysqli_connect_error());
     }
     
-    $all_bets = "SELECT 
-                 bet.data_bet, bet.price, bet.lot_id, users.name
-                 FROM bet
-                 INNER JOIN users ON bet.user_id = users.id
-                 WHERE bet.lot_id = '$num'
-                 ORDER BY data_bet DESC LIMIT 10";
+    $usid = $_SESSION['user_id'];
+    
+    /*$all_bets = "SELECT lot.name, lot.id, lot.url, lot.category_id, lot.data_stop, lot.winner_id, category.cat_name, bet.data_bet, bet.lot_id, bet.price, bet.user_id, bet.data_bet FROM lot 
+                LEFT JOIN bet ON lot.id = bet.lot_id 
+                LEFT JOIN category ON lot.category_id = category.id
+                WHERE bet.user_id = '$usid' ORDER BY bet.data_bet DESC LIMIT 10"; */
+                
+    $all_bets = "SELECT lot.name, lot.id, lot.url, lot.category_id, lot.data_stop, lot.winner_id, category.cat_name, users.contact, bet.lot_id, MAX(bet.price) AS max_price, bet.user_id, MAX(bet.data_bet) AS max_date
+                FROM lot
+                LEFT JOIN bet ON lot.id = bet.lot_id
+                LEFT JOIN category ON lot.category_id = category.id
+                LEFT JOIN users on lot.winner_id = users.id
+                WHERE bet.user_id = '$usid'
+                GROUP BY lot.id
+                ORDER BY max_date
+                DESC LIMIT 10";            
                                  
     $result_bet = mysqli_query($connect, $all_bets); 
     
     $bets = mysqli_fetch_all($result_bet, MYSQLI_ASSOC); 
           
-    $usid = $_SESSION['user_id'];
-
     $lot_content = renderTemplate('templates/all-bets.php', [
         'lot' => $lot,
         'current_date' => $current_hour,

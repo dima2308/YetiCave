@@ -9,7 +9,7 @@
             <ul class="promo__list">
                 <?php foreach ($categories as $cat): ?>
                     <li class="promo__item promo__item--<?=$cat['cat_img'];?>">
-                        <a class="promo__link" href="all-lot.php?category=<?=$cat['cat_name'];?>"><?=$cat['cat_name'];?></a>
+                        <a class="promo__link" href="all-lot?category=<?=$cat['cat_name'];?>"><?=$cat['cat_name'];?></a>
                     </li> 
                  <?php endforeach; ?>
             </ul>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="lot__info">
                     <span class="lot__category"><?php print($value['cat_name']); ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="lot.php<?php print('?' . 'num' . '=' . $value['id']);?>"><?php print($value['name']); ?></a></h3>
+                    <h3 class="lot__title"><a class="text-link" href="lot<?php print('?' . 'num' . '=' . $value['id']);?>"><?php print($value['name']); ?></a></h3>
 
                     <div class="lot__state">
                         <div class="lot__rate">
@@ -51,9 +51,9 @@
                 for ($i = 1; $i <= $total; $i++){ ?>
                     <?php 
                     ($_GET['page'] == $i) ? $active = 'pagination-item-active' : $active = ''; ?>
-                    <li class="pagination-item <?= $active; ?>"><a href="index.php?page=<?=$i;?>"><?= $i; ?></a></li>
+                    <li class="pagination-item <?= $active; ?>"><a href="index?page=<?=$i;?>"><?= $i; ?></a></li>
                 <?php } ?>
-              <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
+              <li class="pagination-item pagination-item-next"><a>Вперед</a></li>
         </ul>
 </section>
     

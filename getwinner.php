@@ -4,7 +4,7 @@
 
     $connect = mysqli_connect("localhost", "root", "", "yeticave");
     if ($connect == false) {
-        print("Îøèáêà ïîäêëþ÷åíèÿ: " . mysqli_connect_error());
+        print("ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ð¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ñ: " . mysqli_connect_error());
     }
     
     if (isset($_GET['num'])) {
@@ -47,7 +47,7 @@
                 'email' => $winner_mail,
                 'name' => $winner_lot_name]);
                 
-            $message = new Swift_Message('Âàøà ñòàâêà ïîáåäèëà!!!');
+            $message = new Swift_Message('Ð’Ð°ÑˆÐ° ÑÑ‚Ð°Ð²ÐºÐ° Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»Ð°!!!');
             $message->setFrom('doingsdone@mail.ru');
             $message->setTo([$winner_mail => $winner_name]);
             $message->setBody($content, 'Respect!');

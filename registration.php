@@ -12,7 +12,11 @@
         $required_fields = ['email', 'password', 'name', 'contacts'];
         $reg = $_POST;
         $errors = [];
+        $email = $reg['email'];
         
+        $sql_mail = "SELECT email FROM users WHERE email='$email'";
+        $record = mysqli_query($connect, $sql_mail);
+             
         foreach ($required_fields as $field) {
             if (empty ($reg[$field])) {
                 $errors[$field] = 'Заполните поле';
@@ -25,6 +29,10 @@
             
             move_uploaded_file($tmp_name, 'img/avatars/' . $real_name);  
         }
+        
+        if (mysqli_num_rows($record)) {
+            $errors['email'] = 'Пользователь с данным email уже зарегистрирован';
+        }
 
         if (count($errors)) {
             $reg_content = renderTemplate('templates/registration.php', [
@@ -34,11 +42,11 @@
         }
         
       else {
-            $email = $reg['email'];
+            $email = htmlspecialchars($reg['email']);
             $password = password_hash($reg['password'], PASSWORD_DEFAULT);
-            $name = $reg['name'];
-            $contact = $reg['contacts'];
-            $url = $_FILES['filename']['name'];
+            $name = htmlspecialchars($reg['name']);
+            $contact = htmlspecialchars($reg['contacts']);
+            $url = htmlspecialchars($_FILES['filename']['name']);
             
             $record = "INSERT INTO `users` (`data_reg`, `email`, `password`, `name`, `contact`, `url`) VALUES ('2017-01-20', '$email', '$password', '$name', '$contact', 'img/avatars/$url')";
             $result = mysqli_query($connect, $record);
@@ -48,7 +56,7 @@
                 print("Ошибка MySQL: " . $error);
             }
             else {
-                header('Location: /example');
+                header('Location: /login');
             }
    }
    }

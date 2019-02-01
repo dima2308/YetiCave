@@ -69,7 +69,7 @@
         else {    
             // код для получения категории по id
             // по-простому не получилось сделать...
-            $lot_cat = $info_lot['category'];
+            $lot_cat = htmlspecialchars($info_lot['category']);
             $lot_cat = (string)$lot_cat;
             $sql_cat = mysqli_query($connect, "SELECT id, cat_name FROM category");
             $res_cat = mysqli_fetch_all($sql_cat, MYSQLI_ASSOC);
@@ -79,12 +79,12 @@
                 }
             }
         
-            $lot_name = $info_lot['lot-name'];
-            $lot_descr = $info_lot['message'];
-            $lot_url = $_FILES['filename']['name'];
-            $lot_price = $info_lot['lot-rate'];
-            $lot_step = $info_lot['lot-step'];
-            $lot_data_stop = $info_lot['lot-date'];
+            $lot_name = htmlspecialchars($info_lot['lot-name']);
+            $lot_descr = htmlspecialchars($info_lot['message']);
+            $lot_url = htmlspecialchars($_FILES['filename']['name']);
+            $lot_price = htmlspecialchars($info_lot['lot-rate']);
+            $lot_step = htmlspecialchars($info_lot['lot-step']);
+            $lot_data_stop = htmlspecialchars($info_lot['lot-date']);
             $usid = $_SESSION['user_id'];
             
 

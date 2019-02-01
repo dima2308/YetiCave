@@ -126,7 +126,7 @@
                 
         }
         else {
-            $user_bet = $bet['cost'];
+            $user_bet = htmlspecialchars($bet['cost']);
 
             $record = "INSERT INTO `bet` (`data_bet`, `price`, `user_id`, `lot_id`) VALUES (NOW(), '$user_bet', '$usid', '$num')";
             $result = mysqli_query($connect, $record);

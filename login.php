@@ -10,8 +10,7 @@
     if ($connect == false) {
         print("Ошибка подключения: " . mysqli_connect_error());
     }
-    
-    
+      
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $required_fields = ['email', 'password'];
         $info_login = $_POST;
@@ -22,8 +21,7 @@
                 $errors[$field] = 'Поле не заполнено';
             }
         }
-        
-        
+             
         if (!empty($info_login['email'])) {
             $email = $info_login['email'];
             $sql_email = "SELECT * FROM `users` WHERE `email` = '$email'";
@@ -34,21 +32,7 @@
             if (!count($errors) && $user) {
                 if (password_verify($info_login['password'], $user['password'])) {
                     $_SESSION['user'] = $user;
-                    
-                    /*
-                    $newname = mysqli_query($connect, "SELECT `name` FROM `users` WHERE `email` = '$email'");
-                    $userna = mysqli_fetch_array($newname, MYSQLI_ASSOC);
-                    $user_name_ses = $userna['name'];
-                    
-                    $newimg = mysqli_query($connect, "SELECT `url` FROM `users` WHERE `email` = '$email'");
-                    $userimg = mysqli_fetch_array($newimg, MYSQLI_ASSOC);
-                    $user_img_ses = $userimg['url'];
-                    
-                    $newid = mysqli_query($connect, "SELECT `id` FROM `users` WHERE `email` = '$email'");
-                    $userid = mysqli_fetch_array($newid, MYSQLI_ASSOC);
-                    $user_id_ses = $userid['id'];
-                    */
-                    
+
                     $sql_new_us = mysqli_query($connect, "SELECT `name`, `url`, `id` FROM `users` WHERE `email` = '$email'");
                     $sql_new_fetch = mysqli_fetch_array($sql_new_us, MYSQLI_ASSOC);
                     
@@ -68,7 +52,6 @@
        $_SESSION['user_img'] = $user_img_ses;
        $_SESSION['user_id'] = $user_id_ses;
        
-
         if (count($errors)) {
             $login_content = renderTemplate('templates/login.php',
                 [
@@ -93,4 +76,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-

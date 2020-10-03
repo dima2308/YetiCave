@@ -67,8 +67,6 @@
                 'categories' => selectCategories($connect)]); 
         }
         else {    
-            // код для получения категории по id
-            // по-простому не получилось сделать...
             $lot_cat = htmlspecialchars($info_lot['category']);
             $lot_cat = (string)$lot_cat;
             $sql_cat = mysqli_query($connect, "SELECT id, cat_name FROM category");
@@ -93,8 +91,7 @@
                                         '$lot_step', 0, '$usid', NULL, '$lot_cat')";
                                         
             $result = mysqli_query($connect, $record);
-            
-            
+                 
             if (!$result) {
                 $error = mysqli_error($connect);
                 print("Ошибка MySQL: " . $error);
@@ -120,4 +117,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-?>

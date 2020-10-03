@@ -15,8 +15,7 @@
     $user_name = $_SESSION['user_name'];
     
     $categories_db = "SELECT * FROM category";
-    
-    
+       
     // пагинация 
     if (isset($_GET['page'])){
         $page = $_GET['page'];
@@ -51,8 +50,7 @@
     
     $cat = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
     $lots = mysqli_fetch_all($result_lots, MYSQLI_ASSOC);
-    
-    
+       
     $page_content = renderTemplate('templates/index.php', [
         'categories_db' => $cat,
         'current_date' => $current_hour,
@@ -68,5 +66,4 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-?>
 

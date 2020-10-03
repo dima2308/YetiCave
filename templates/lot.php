@@ -1,5 +1,4 @@
-
-    <?php
+	<?php
         $lot = $template_data['lot'];
         $my_bets = $template_data['bets'];
     ?>
@@ -98,6 +97,5 @@
     </div>
     <?php endforeach; ?>
   </section>
-
 </body>
 </html>

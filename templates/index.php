@@ -56,5 +56,3 @@
               <li class="pagination-item pagination-item-next"><a>Вперед</a></li>
         </ul>
 </section>
-    
-    

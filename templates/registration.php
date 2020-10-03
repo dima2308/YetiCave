@@ -50,9 +50,7 @@
       <textarea id="contacts" name="contacts" rows="5"></textarea>
       <span class="form__error"><?= $error; ?></span>
     </div>
-    
-    
-    
+       
     <div class="form__item form__item--file form__item--last "> <!-- form__item--uploaded -->
       <label>Аватар</label>
       <div class="preview">

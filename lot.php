@@ -131,20 +131,10 @@
             $record = "INSERT INTO `bet` (`data_bet`, `price`, `user_id`, `lot_id`) VALUES (NOW(), '$user_bet', '$usid', '$num')";
             $result = mysqli_query($connect, $record);
             
-             /*
-            $all_bets = "SELECT 
-                     bet.data_bet, bet.price, bet.lot_id, users.name
-                     FROM bet
-                     INNER JOIN users ON bet.user_id = users.id
-                     WHERE bet.lot_id = '$num'
-                     ORDER BY data_bet DESC LIMIT 10"; */
-
-            
             $result_bet = mysqli_query($connect, $all_bets); 
             $bets = mysqli_fetch_all($result_bet, MYSQLI_ASSOC); 
             
             // транзакция, для получения новой цены
-            
             mysqli_begin_transaction($connect, MYSQLI_TRANS_START_READ_WRITE);
             
             mysqli_query($connect, "SELECT @max_price:=MAX(bet.price), bet.lot_id, lot.id, lot.name
@@ -164,7 +154,6 @@
         }
     }
             
-
     $layout_content = renderTemplate('templates/layout.php', [
         'content' => $lot_content,
         'title' => $lot_name,
@@ -173,7 +162,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-    
-    
-    
-    

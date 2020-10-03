@@ -19,15 +19,13 @@
                                             AND lot.data_stop <= NOW();');
     $lots_result = mysqli_fetch_all($lots_query, MYSQLI_ASSOC);
     
-    /*
     $transport = new Swift_SmtpTransport('smtp.mail.ru', 465);
     $transport->setUsername("doingsdone@mail.com");
     $transport->setPassword("rds7BgcL");
     $transport->setEncryption('ssl');
     
     $mailer = new Swift_Mailer($transport);
-    */
-    
+        
     setupMailer();
    
     if ($lots_result) {
@@ -41,7 +39,7 @@
             $winners = "UPDATE lot SET winner_id = '$winner_id_us' WHERE lot.id = '$winner_id_lot'";
             $result_winner = mysqli_query($connect, $winners); 
             
-            /*
+            
             $content = renderTemplate('templates/email.php', [
                 'name' => $winner_name,
                 'email' => $winner_mail,
@@ -54,14 +52,7 @@
             
             $mailer = new Swift_Mailer($transport);
             $mailer->send($message);
-            */
             
-            //sendMail($winner_name, $winner_mail, $winner_lot_name);
-
+            sendMail($winner_name, $winner_mail, $winner_lot_name);
         }
     }
-
-    
-
-            
-    

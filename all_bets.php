@@ -12,12 +12,7 @@
     }
     
     $usid = $_SESSION['user_id'];
-    
-    /*$all_bets = "SELECT lot.name, lot.id, lot.url, lot.category_id, lot.data_stop, lot.winner_id, category.cat_name, bet.data_bet, bet.lot_id, bet.price, bet.user_id, bet.data_bet FROM lot 
-                LEFT JOIN bet ON lot.id = bet.lot_id 
-                LEFT JOIN category ON lot.category_id = category.id
-                WHERE bet.user_id = '$usid' ORDER BY bet.data_bet DESC LIMIT 10"; */
-                
+              
     $all_bets = "SELECT lot.name, lot.id, lot.url, lot.category_id, lot.data_stop, lot.winner_id, category.cat_name, users.contact, bet.lot_id, MAX(bet.price) AS max_price, bet.user_id, MAX(bet.data_bet) AS max_date
                 FROM lot
                 LEFT JOIN bet ON lot.id = bet.lot_id
@@ -48,7 +43,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-    
-    
-    
-    

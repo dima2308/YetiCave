@@ -31,7 +31,6 @@
 		$lots = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	}
     
-    
     $search_content = renderTemplate('templates/search.php', [
         'lot' => $lots,
         'search' => $search,
@@ -45,4 +44,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-        

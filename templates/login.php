@@ -1,4 +1,3 @@
-
   <?php        
         $info_login = $template_data['info_login'];
         $errors = $template_data['errors'];   

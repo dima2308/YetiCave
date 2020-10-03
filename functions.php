@@ -90,5 +90,4 @@
             
             $mailer = new Swift_Mailer($transport);
             $mailer->send($message);
-    } 
-?>
+    }

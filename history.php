@@ -37,4 +37,3 @@
         'categories' => selectCategories($connect)]);
         
     print($layout_content);
-?>

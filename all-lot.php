@@ -45,5 +45,4 @@
         'avatar' => $_SESSION['user_img'],
         'categories' => selectCategories($connect)]);
         
-    print($layout_content);
-        
+    print($layout_content);      

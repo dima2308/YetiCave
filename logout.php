@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    
-	if (isset($_SESSION['user'])) {
-        $_SESSION = [];
-        header('Location: /example');
-    }
+session_start();
+
+if (isset($_SESSION['user'])) {
+    $_SESSION = [];
+    header('Location: /example');
+}

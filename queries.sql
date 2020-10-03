@@ -1,16 +1,29 @@
 USE yeticave;
 
-INSERT INTO category(cat_name, cat_img)
-  VALUES
-    ('Доски и лыжи', 'boards'),
-    ('Крепления', 'attachment'),
-    ('Ботинки', 'boots'),
-    ('Одежда', 'clothing'),
-    ('Инструменты', 'tools'),
-    ('Разное', 'other');
-  
-INSERT INTO lot(data_create, name, description, url, start_price, data_stop, bet_step, likes, author_id, category_id)
-  VALUES
+INSERT INTO
+  category(cat_name, cat_img)
+VALUES
+  ('Доски и лыжи', 'boards'),
+  ('Крепления', 'attachment'),
+  ('Ботинки', 'boots'),
+  ('Одежда', 'clothing'),
+  ('Инструменты', 'tools'),
+  ('Разное', 'other');
+
+INSERT INTO
+  lot(
+    data_create,
+    name,
+    description,
+    url,
+    start_price,
+    data_stop,
+    bet_step,
+    likes,
+    author_id,
+    category_id
+  )
+VALUES
   (
     NOW(),
     '2014 Rossignol District Snowboard',
@@ -63,7 +76,7 @@ INSERT INTO lot(data_create, name, description, url, start_price, data_stop, bet
     0,
     1,
     3
-  ), 
+  ),
   (
     '2019-01-13',
     'Куртка для сноуборда DC Mutiny Charocal',
@@ -88,23 +101,42 @@ INSERT INTO lot(data_create, name, description, url, start_price, data_stop, bet
     3,
     6
   );
-  
-INSERT INTO bet(data_bet, price, lot_id, user_id)
-  VALUES
-    ('2019-01-17', 10000, 2, 1),
-    ('2019-01-17', 20000, 3, 2),
-    ('2019-01-17', 25000, 2, 3);
-    
-INSERT INTO users(data_reg, email, name, password, url, contact)
-  VALUES
-    ('2019-01-17', 'ignat.v@gmail.ru', 'Игнат', '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka', '', ''),
-    ('2019-01-17', 'kitty_93@li.ru', 'Леночка', '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa', '', ''),
-    ('2019-01-17', 'warrior07@mail.ru', 'Руслан', '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW', '', '');
-    
+
+INSERT INTO
+  bet(data_bet, price, lot_id, user_id)
+VALUES
+  ('2019-01-17', 10000, 2, 1),
+  ('2019-01-17', 20000, 3, 2),
+  ('2019-01-17', 25000, 2, 3);
+
+INSERT INTO
+  users(data_reg, email, name, password, url, contact)
+VALUES
+  (
+    '2019-01-17',
+    'ignat.v@gmail.ru',
+    'Игнат',
+    '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka',
+    '',
+    ''
+  ),
+  (
+    '2019-01-17',
+    'kitty_93@li.ru',
+    'Леночка',
+    '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa',
+    '',
+    ''
+  ),
+  (
+    '2019-01-17',
+    'warrior07@mail.ru',
+    'Руслан',
+    '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW',
+    '',
+    ''
+  );
+
 /* Получить все категории 
-  SELECT name FROM category;
-*/
-
-
-
-
+ SELECT name FROM category;
+ */

@@ -1,8 +1,11 @@
 USE yeticave;
 
 DROP TABLE IF EXISTS category;
+
 DROP TABLE IF EXISTS lot;
+
 DROP TABLE IF EXISTS users;
+
 DROP TABLE IF EXISTS bet;
 
 CREATE TABLE category (
@@ -23,9 +26,9 @@ CREATE TABLE lot (
 	data_stop DATETIME not null,
 	bet_step INT not null,
 	likes INT not null,
-  author_id INT not null,
-  winner_id INT,
-  category_id INT not null
+	author_id INT not null,
+	winner_id INT,
+	category_id INT not null
 );
 
 CREATE INDEX lot_name on lot(name);
@@ -34,8 +37,8 @@ CREATE TABLE bet (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	data_bet DATETIME not null,
 	price INT not null,
-  user_id INT,
-  lot_id INT
+	user_id INT,
+	lot_id INT
 );
 
 CREATE TABLE users (
@@ -47,10 +50,7 @@ CREATE TABLE users (
 	url CHAR(100),
 	contact VARCHAR(300)
 );
-	
+
 CREATE UNIQUE INDEX email on users(email);
 
-
 CREATE FULLTEXT INDEX name_descr ON lot (name, description);
-
-
